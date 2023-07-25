@@ -9,10 +9,10 @@ const Main = () => {
     return (
         <div>
             <Header></Header>
-            <Container>
-                <Row>
-                    <Col md={2}><LeftComponent></LeftComponent></Col>
-                    <Col className='bg-success' md={7}><Outlet></Outlet></Col>
+            <Container className='mt-5'>
+                <Row >
+                    <Col md={2} className='d-none d-md-block'><LeftComponent></LeftComponent></Col>
+                    <Col md={7}><Outlet></Outlet></Col>
                     <Col md={3}><RightComponent></RightComponent></Col>
                 </Row>
             </Container>

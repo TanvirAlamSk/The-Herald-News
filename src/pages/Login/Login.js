@@ -4,7 +4,7 @@ import { AuthContext } from '../../Context/UserContext';
 import "./Login.css"
 
 const Login = () => {
-    const { userLogin } = useContext(AuthContext)
+    const { userLogin, error, setError } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
@@ -12,7 +12,12 @@ const Login = () => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-        userLogin(email, password);
+        userLogin(email, password).then((user) => {
+            alert("Login Successful")
+            console.log(user)
+        }).catch((error) => {
+            setError(error)
+        })
         event.target.reset();
         navigate(from, { replace: true });
 
@@ -31,6 +36,7 @@ const Login = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Enter your password" />
 
+                        <p>{error}</p>
                         <input type="submit" value="Log In" />
 
                     </form>

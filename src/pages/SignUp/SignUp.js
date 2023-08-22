@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 
 const SignUp = () => {
-    const { createNewUser } = useContext(AuthContext)
+    const { createNewUser, error } = useContext(AuthContext)
     const navigate = useNavigate()
     console.log()
     const handleSignup = (event) => {
@@ -30,6 +30,7 @@ const SignUp = () => {
 
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Enter your password" />
+                        <p>{error}</p>
 
                         <input type="submit" value="Log In" />
 

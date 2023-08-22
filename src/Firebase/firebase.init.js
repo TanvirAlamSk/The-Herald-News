@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBCRTmnDG3NH6qUJrzgKRwTPI8KhPXS9E0",
-    authDomain: "the-herald-news-52c4a.firebaseapp.com",
-    projectId: "the-herald-news-52c4a",
-    storageBucket: "the-herald-news-52c4a.appspot.com",
-    messagingSenderId: "155368562211",
-    appId: "1:155368562211:web:efdfae4804a9e56af35b96"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase

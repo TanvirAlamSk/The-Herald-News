@@ -6,6 +6,7 @@ export const AuthContext = createContext()
 const auth = getAuth(app)
 const UserContext = ({ children }) => {
     const [user, setUser] = useState({})
+    const [error, setError] = useState('')
     const [loader, setLoader] = useState(true)
     const googleProvider = new GoogleAuthProvider()
 
@@ -16,7 +17,7 @@ const UserContext = ({ children }) => {
             .then(() => {
                 alert("Sign Up Successful")
             }).catch((error) => {
-                alert(error)
+                setError(error)
             })
     }
 
@@ -26,7 +27,7 @@ const UserContext = ({ children }) => {
         signInWithPopup(auth, googleProvider).then(() => {
             alert("Login succcess")
         }).catch((error) => {
-            alert(error);
+            setError(error);
         })
     }
 
@@ -35,11 +36,8 @@ const UserContext = ({ children }) => {
 
     const userLogin = (email, password) => {
         setLoader(true)
-        signInWithEmailAndPassword(auth, email, password).then(() => {
-            alert("Login Successful")
-        }).catch((error) => {
-            alert(error)
-        })
+        return signInWithEmailAndPassword(auth, email, password)
+
     }
 
 
@@ -74,7 +72,7 @@ const UserContext = ({ children }) => {
 
 
 
-    const authInfo = { user, loader, createNewUser, userLogin, logout, googleSignIn }
+    const authInfo = { user, loader, error, setError, createNewUser, userLogin, logout, googleSignIn }
     return (
         <div>
             <AuthContext.Provider value={authInfo} >{children}</AuthContext.Provider>
